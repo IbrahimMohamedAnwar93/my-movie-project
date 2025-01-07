@@ -1,11 +1,21 @@
 import React from "react";
-import HelloPage from "./components/HelloPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LandingPage from "./components/LandingPage/LandingPage";
+import MoviesPage from "./components/MoviesPage/MoviesPage";
+import FavoritesPage from "./components/FavoritesPage/FavoritesPage";
+import "./App.css";
 
 const App = () => {
   return (
-    <div>
-      <HelloPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />}>
+          <Route index element={<MoviesPage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 
