@@ -6,7 +6,6 @@ const Header = () => {
   return (
     <header className="bg-gray-800 text-white py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Left Side: Logo */}
         <Link
           to="/"
           className="text-lg font-bold hover:text-gray-300 transition-colors duration-200"
@@ -14,7 +13,6 @@ const Header = () => {
           Popcorn Picks
         </Link>
 
-        {/* Right Side: Search Icon and Links */}
         <div className="flex items-center space-x-6">
           <button className="text-gray-300 hover:text-white transition-colors duration-200">
             <FaSearch className="w-5 h-5" />

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../Home/Movies.css";
 
+const API_KEY = "9c8bdf53b569bd392d33a38db8e6cab6";
+
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
@@ -9,7 +11,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=d61cf08d6951da6f3d2850795fa49452`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
       );
       const data = await response.json();
       setMovie(data);

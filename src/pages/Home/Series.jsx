@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Series.css";
 
-const API_KEY = "d61cf08d6951da6f3d2850795fa49452";
+const API_KEY = "9c8bdf53b569bd392d33a38db8e6cab6";
 
 function Series() {
   const [series, setSeries] = useState([]);
