@@ -1,22 +1,57 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage";
-import MoviesPage from "./components/MoviesPage/MoviesPage";
-import FavoritesPage from "./components/FavoritesPage/FavoritesPage";
+import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Movies from "./pages/Home/Movies";
+import Series from "./pages/Home/Series";
+import MovieDetails from "./pages/MovieDetails/MovieDetails";
+import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
-const App = () => {
+function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />}>
-          <Route index element={<MoviesPage />} />
-          <Route path="movies" element={<MoviesPage />} />
-          <Route path="favorites" element={<FavoritesPage />} />
-        </Route>
-      </Routes>
-    </Router>
+    <div className="app">
+      <header className="header">
+        <nav className="navbar">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/movies" className="nav-link">
+            Movies
+          </Link>
+          <Link to="/series" className="nav-link">
+            Series
+          </Link>
+
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search for movies..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <button>
+              <i className="search-icon">🔍</i>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<Home searchQuery={searchQuery} />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/series" element={<Series />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
+        </Routes>
+      </ErrorBoundary>
+    </div>
   );
-};
+}
 
 export default App;

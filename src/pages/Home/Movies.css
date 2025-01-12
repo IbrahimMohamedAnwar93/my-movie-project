@@ -1,0 +1,103 @@
+.movie-details {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-details .poster {
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.movie-details .poster:hover {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.movie-description {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-description h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.movie-description p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.movie-description .overview {
+  margin-top: 20px;
+}
+
+.movie-description .rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.movie-description .rating span {
+  margin-left: 5px;
+  font-size: 18px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.movie-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.movie-tags .tag {
+  padding: 6px 12px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s ease;
+}
+
+.movie-tags .tag:hover {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
