@@ -7,7 +7,7 @@ const Home = () => {
   const [cartoons, setCartoons] = useState([]);
   const [documentaries, setDocumentaries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [displayCount, setDisplayCount] = useState(5); // Start by displaying 5 items
+  const [displayCount, setDisplayCount] = useState(5);
 
   const API_KEY = "9c8bdf53b569bd392d33a38db8e6cab6";
 
@@ -52,7 +52,7 @@ const Home = () => {
 
   const loadMore = useCallback(() => {
     if (displayCount < movies.length) {
-      setDisplayCount((prevCount) => prevCount + 5); // Show 5 more items
+      setDisplayCount((prevCount) => prevCount + 5);
     }
   }, [displayCount, movies.length]);
 

@@ -9,7 +9,7 @@ body {
 
 /* Header Styling */
 header {
-  background-image: url("../../assets/Images/NavBar.jpeg"); /* Replace with your header background */
+  background-image: url("../../assets/Images/NavBar.jpeg");
   background-size: cover;
   background-position: center;
   padding: 20px;

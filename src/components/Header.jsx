@@ -1,36 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <header className="bg-gray-800 text-white py-4">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link
-          to="/"
-          className="text-lg font-bold hover:text-gray-300 transition-colors duration-200"
-        >
-          Popcorn Picks
-        </Link>
+    <header className="header">
+      <div className="overlay">
+        <div className="header-content">
+          <div className="logo-container">
+            <h1 className="logo">Popcorn Picks</h1>
+            <p className="tagline">Discover every movie</p>
+          </div>
 
-        <div className="flex items-center space-x-6">
-          <button className="text-gray-300 hover:text-white transition-colors duration-200">
-            <FaSearch className="w-5 h-5" />
-          </button>
-          <nav className="flex space-x-4">
-            <Link
-              to="/movies"
-              className="text-sm hover:text-gray-300 transition-colors duration-200"
-            >
-              Movies
-            </Link>
-            <Link
-              to="/series"
-              className="text-sm hover:text-gray-300 transition-colors duration-200"
-            >
-              Series
-            </Link>
+          <nav className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/movies">Movies</Link>
+            <Link to="/series">Series</Link>
           </nav>
+
+          <div className="search-box">
+            <input type="text" placeholder="Search for movies..." />
+            <button className="search-button">
+              <FaSearch />
+            </button>
+          </div>
         </div>
       </div>
     </header>
