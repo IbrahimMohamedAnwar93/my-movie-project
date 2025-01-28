@@ -9,6 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [displayCount, setDisplayCount] = useState(5);
   const [error, setError] = useState(null); // Added state for errors
+  const [selectedItem, setSelectedItem] = useState(null); // Added state for the selected item
 
   const API_KEY = "9c8bdf53b569bd392d33a38db8e6cab6";
 
@@ -76,103 +77,125 @@ const Home = () => {
 
   if (loading) return <p>Loading...</p>;
 
+  const handleItemClick = (item) => {
+    setSelectedItem(item); // Set the selected item
+  };
+
   return (
     <div className="home">
       <h1>Popular Content</h1>
 
       {error && <p className="error">Error: {error}</p>} {/* Show error message */}
 
-      <div className="section">
-        <h2>Movies</h2>
-        <div className="content-grid">
-          {movies.slice(0, displayCount).map((movie) => (
-            <div
-              key={movie.id}
-              className="content-card"
-              onClick={() => console.log("Clicked:", movie)} // Log clicked item
-            >
-              {movie.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              ) : (
-                <p>No Image Available</p>
-              )}
-              <h3>{movie.title}</h3>
-            </div>
-          ))}
+      {selectedItem ? (
+        <div className="detail-view">
+          <button onClick={() => setSelectedItem(null)}>Back to List</button>
+          <h2>{selectedItem.title || selectedItem.name}</h2>
+          {selectedItem.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${selectedItem.poster_path}`}
+              alt={selectedItem.title || selectedItem.name}
+            />
+          ) : (
+            <p>No Image Available</p>
+          )}
+          <p>{selectedItem.overview}</p>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="section">
+            <h2>Movies</h2>
+            <div className="content-grid">
+              {movies.slice(0, displayCount).map((movie) => (
+                <div
+                  key={movie.id}
+                  className="content-card"
+                  onClick={() => handleItemClick(movie)} // Log clicked item
+                >
+                  {movie.poster_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={movie.title}
+                    />
+                  ) : (
+                    <p>No Image Available</p>
+                  )}
+                  <h3>{movie.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      <div className="section">
-        <h2>TV Shows</h2>
-        <div className="content-grid">
-          {tvShows.slice(0, displayCount).map((show) => (
-            <div
-              key={show.id}
-              className="content-card"
-              onClick={() => console.log("Clicked:", show)} // Log clicked item
-            >
-              {show.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                  alt={show.name}
-                />
-              ) : (
-                <p>No Image Available</p>
-              )}
-              <h3>{show.name}</h3>
+          <div className="section">
+            <h2>TV Shows</h2>
+            <div className="content-grid">
+              {tvShows.slice(0, displayCount).map((show) => (
+                <div
+                  key={show.id}
+                  className="content-card"
+                  onClick={() => handleItemClick(show)} // Log clicked item
+                >
+                  {show.poster_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                      alt={show.name}
+                    />
+                  ) : (
+                    <p>No Image Available</p>
+                  )}
+                  <h3>{show.name}</h3>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="section">
-        <h2>Cartoons</h2>
-        <div className="content-grid">
-          {cartoons.slice(0, displayCount).map((cartoon) => (
-            <div
-              key={cartoon.id}
-              className="content-card"
-              onClick={() => console.log("Clicked:", cartoon)} // Log clicked item
-            >
-              {cartoon.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${cartoon.poster_path}`}
-                  alt={cartoon.name}
-                />
-              ) : (
-                <p>No Image Available</p>
-              )}
-              <h3>{cartoon.name}</h3>
+          <div className="section">
+            <h2>Cartoons</h2>
+            <div className="content-grid">
+              {cartoons.slice(0, displayCount).map((cartoon) => (
+                <div
+                  key={cartoon.id}
+                  className="content-card"
+                  onClick={() => handleItemClick(cartoon)} // Log clicked item
+                >
+                  {cartoon.poster_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${cartoon.poster_path}`}
+                      alt={cartoon.name}
+                    />
+                  ) : (
+                    <p>No Image Available</p>
+                  )}
+                  <h3>{cartoon.name}</h3>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="section">
-        <h2>Documentaries</h2>
-        <div className="content-grid">
-          {documentaries.slice(0, displayCount).map((documentary) => (
-            <div
-              key={documentary.id}
-              className="content-card"
-              onClick={() => console.log("Clicked:", documentary)} // Log clicked item
-            >
-              {documentary.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${documentary.poster_path}`}
-                  alt={documentary.title}
-                />
-              ) : (
-                <p>No Image Available</p>
-              )}
-              <h3>{documentary.title}</h3>
+          <div className="section">
+            <h2>Documentaries</h2>
+            <div className="content-grid">
+              {documentaries.slice(0, displayCount).map((documentary) => (
+                <div
+                  key={documentary.id}
+                  className="content-card"
+                  onClick={() => handleItemClick(documentary)} // Log clicked item
+                >
+                  {documentary.poster_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${documentary.poster_path}`}
+                      alt={documentary.title}
+                    />
+                  ) : (
+                    <p>No Image Available</p>
+                  )}
+                  <h3>{documentary.title}</h3>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
